@@ -43,6 +43,14 @@ public class TestInstructor {
     }
 	
 	@Test
+	// instructor with empty string name can add hw (random name can also add hw)
+	public void testaddHomework_emptyStringInstructor() {
+		this.admin.createClass("ClassA", 2017, "InstructorA", 15);
+		this.instructor.addHomework("", "ClassA", 2017, "hw1");
+		assertFalse(this.instructor.homeworkExists("ClassA", 2017, "hw1"));
+	}
+	
+	@Test
 	//instructor assigned, homework assigned, and student submitted the hw
 	public void testAssignGrade_allTrue() {
 		this.admin.createClass("Class", 2017, "Instructor", 15);
@@ -68,7 +76,7 @@ public class TestInstructor {
 	}
 	
 	@Test
-	//homework not assigned, LOOK AT THIS AGAIN, ask TA!!!
+	//homework not assigned
 	public void testAssignGrade_homeworkNotAssigned() {
 		this.admin.createClass("ClassA", 2017, "InstructorA", 15);
         this.student.registerForClass("Student", "ClassA", 2017);

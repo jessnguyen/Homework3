@@ -76,11 +76,11 @@ public class TestAdmin {
     }
 
     @Test
-    // unique pair of class and instructor
+    // unique pair of class and year
     public void testMakeClass9() {
-		this.admin.createClass("Test", 2017, "Instructor", 10);
-		this.admin.createClass("Test", 2017, "Instructor", 15);
-		assertEquals(10, this.admin.getClassCapacity("Test", 2017));
+		this.admin.createClass("Test", 2017, "Instructor1", 10);
+		this.admin.createClass("Test", 2017, "Instructor2", 15);
+		assertEquals("Instructor1", this.admin.getClassInstructor("Test", 2017));
     }
     
     @Test
@@ -130,4 +130,13 @@ public class TestAdmin {
     		this.admin.changeCapacity("Test", 2017, 1);
     		assertEquals(15, this.admin.getClassCapacity("Test", 2017));
     }
+    
+    @Test
+    // change capacity to negative, false
+    public void testChangeCapacity5() {
+    		this.admin.createClass("Test", 2017, "Instructor", 15);
+		this.admin.changeCapacity("Test", 2017, -5);
+		assertFalse(this.admin.getClassCapacity("Test", 2017) == -5);
+    }
+    
 }

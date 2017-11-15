@@ -41,7 +41,7 @@ public class TestStudent {
     }
 	
 	@Test
-	// Class full (capacity already met), CHECK THIS ONE
+	// Class full (capacity already met)
 	public void testRegisterForClass_classFull() {
         this.admin.createClass("Class", 2017, "Instructor", 2);
         
@@ -73,15 +73,6 @@ public class TestStudent {
 	}
 	
 	@Test
-	// class ended, LOOK AT THIS AGAIN
-	public void testDropClass_classEnded() {
-		this.admin.createClass("Class", 2016, "Instructor", 10);
-		this.student.registerForClass("Student", "Class", 2016);
-		this.student.dropClass("Student", "Class", 2016);
-		assertTrue(this.student.isRegisteredFor("Student", "Class", 2016));
-	}
-	
-	@Test
 	// hw exists, student is registered, and class is taught in current year
 	public void testSubmitHomework() {
 		this.admin.createClass("Class", 2017, "Instructor", 10);
@@ -101,7 +92,7 @@ public class TestStudent {
 	}
 	
 	@Test
-	// student not registered, provided that student is registered??? check with TA
+	// student not registered
 	public void testSubmitHomework_studentNotRegistered() {
 		this.admin.createClass("Class", 2017, "Instructor", 10);
 		this.admin.createClass("ClassB", 2017, "InstructorB", 15);
@@ -112,7 +103,7 @@ public class TestStudent {
 	}
 	
 	@Test
-	// class is taught in past
+	// class is taught in past/not currently taught
 	public void testSubmitHomework_pastClass() {
 		this.admin.createClass("Class", 2016, "Instructor", 10);
 		this.student.registerForClass("Student", "Class", 2016);
@@ -122,7 +113,7 @@ public class TestStudent {
 	}
 	
 	@Test
-	// class is taught in future
+	// class is taught in future/not currently taught
 	public void testSubmitHomework_futureClass() {
 		this.admin.createClass("Class", 2019, "Instructor", 10);
 		this.student.registerForClass("Student", "Class", 2019);
